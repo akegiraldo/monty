@@ -68,7 +68,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 	int string;
 	stack_t *tmp;
 
-	if (*stack == NULL)
+	if (stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pstr, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
