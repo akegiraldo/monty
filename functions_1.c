@@ -26,7 +26,6 @@ void pop(stack_t **stack, unsigned int line_number)
 	{
 		tmp = tmp->next;
 		tmp->prev = NULL;
-		free(tmp);
 	}
 }
 
