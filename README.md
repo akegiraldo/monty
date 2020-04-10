@@ -13,31 +13,27 @@ Monty 0.98 is a scripting language that is first compiled into Monty byte codes 
 `gcc -Wall -Werror -Wextra -pedantic *.c -o monty`<br>
 3. Now you can use monty passing the path of a file with Monty byte code as an argument to the generated executable:<br>
 `monty file_path`<br><br>
-In the `Examples` section you can see some usage examples
+In the [Examples](#examples) section you can see some usage examples
 
 ## File Index
 |File name              |Description                         |
 |-----------------------|------------------------------------|
-|[_printf](https://github.com/Doouh/printf/blob/master/_printf.c)|- `_printf`: Our main function and the first one that is executed when using our program, which contains a structure with all the allowed formats and initializes a list with the arguments passed as parameters.<br>- `iterator`: Function that iterates the entire line of text that the user wants to print and depending on the format found, print the text or call one of our functions.|
-|[_putchar](https://github.com/Doouh/printf/blob/master/_putchar.c)|- `_putchar`: Function that writes the character passed as argument to stdout|
-|[additionalFunctions](https://github.com/Doouh/printf/blob/master/additionalFunctions.c)|- `print_number`: Prints by character a negative or positive number passed as parameter.<br>- `get_octal`: Converts a number passed by parameter to octal base and prints it.<br>- `get_hex`: Converts a number passed by parameter to hex base and prints it.<br>- `get_bin`: Converts a number passed by parameter to binary base and prints it.|
-|[functions_0](https://github.com/Doouh/printf/blob/master/functions_0.c)|- `p_c`: Receive a character and print it using `_putchar`.<br>- `p_s`: Receive a string and print it using `_putchar`.<br>- `p_p`: Print the percentage symbol.<br>- `p_d`: Print a decimal number using the `print_number` function.<br>- `p_i`: Print a decimal number using the `print_number` function.|
-|[functions_1](https://github.com/Doouh/printf/blob/master/functions_1.c)|- `p_u`: Receive an unsigned number and print it using the `print_number` function.<br>- `p_o`: Receive an unsigned number and print it as octal using the `get_octal` function.<br>- `p_x`: Receive an unsigned number and print it as a lowercase hexadecimal using the `get_hex` function.<br>- `p_X`: Receive an unsigned number and print it as a uppercase hexadecimal using the `get_hex` function.<br>- `p_b`: Receive an unsigned number and print it as binary using the `get_bin` function.|
-|[functions_2](https://github.com/Doouh/printf/blob/master/functions_2.c)|- `p_S`: Receive a string and print it using `_putchar`, special characters will be printed in hexadecimal using `get_hex`.<br>- `p_r`: Receive a string and print it reversed using `_putchar`.<br>- `p_a`: Receive an address in memory and print it using `_putchar` and `get_hex`.|
-|[holberton](https://github.com/Doouh/printf/blob/master/holberton.h)|This file is the header of our entire program, it contains the prototypes of all the functions described in this index and the structure used to call the functions.|
+|[additionalFunctions_0](additionalFunctions_0.c)|- `freestack`: Receive a stack per parameter and delete it.<br>- `_isdigit`: It receives a character by parameters and returns 1 or 0 if it is a number or not.|
+|[functions_0](functions_0.c)|- `push`: Receives a stack and a number per parameter and adds this as a new node to the stack.<br>- `pall`: It receives a stack per parameter and prints all the values it has stored.<br>- `pint`: Receive a stack per parameter and print the value of the first node.<br>- `nop`: It receives a stack per parameter and does nothing with it.<br>- `swap`: Receive a stack per parameter and swap the first two nodes between them.|
+|[functions_1](functions_1.c)|- `pop`: Receive one stack per parameter and remove the first node.<br>- `add`: Receives a stack per parameter adds the values of the first two nodes and removes them, and saves a new node with the sum.<br>- `sub`: Receives a stack per parameter subtracts the values of the first two nodes and removes them, and saves a new node with the subtraction.<br>- `division`: Receives a stack per parameter divides the values of the first two nodes and removes them, and saves a new node with division.<br>- `mul`: Receives a stack per parameter multiplies the values of the first two nodes and removes them, and saves a new node with the multiplication.|
+|[functions_2](functions_2.c)|- `mod`: Receives a stack per parameter calculates the modulus between the values of the first two nodes and removes them, and saves a new node with the result.<br>- `pchar`: Receive a stack per parameter, convert the value of the first node into char and print it.<br>- `pstr`: Receive a stack per parameter, convert the value of each node into character and print it.|
+|[main](main.c)|- `main`: It's our main function, it receives a file per parameter and starts reading it line by line, for each one of them it verifies by means of the `is_opcode` function if it is one of the preset options.<br>- `parse`: It receives a string per parameter and removes tabs, line breaks and spaces from it, to later check if it is a valid option.<br>- `is_opcode`: It receives a stack per parameter and a string, uses the `parse` function to obtain only valid values from among the string and checks if they are in the list of preset options, if so, calls the respective function according to the chosen option and it passes to this the stack by parameter.<br>- `check_push`: Check if an element passed by parameter is of the necessary format to be saved in the stack, if so, do the push.|
+|[monty](monty.h)|This file is the header of our entire program, it contains the prototypes of all the functions described in this index and the structure used to call the functions.|
 
 
-### EXAMPLES
-* Some examples of using printf and its console output.
+## Examples
+* Some examples of using monty and its console output.
 
- - _printf("%%");
- - > %
- - _printf("%s", "Hello, world!");
- - > Hello, world!
- - _printf("La %s %c%C para %s%c%c%c%s robot.\n", "política", 'e', 's', "marionetas", '.', 32, 45, "Mr");
- - > La política es para marionetas. -Mr robot.
+|Example #1             |Example #1             |Example #3             |
+|-----------------------|-----------------------|-----------------------|
+|\~/monty$ cat -e bytecodes/00.m<br>push 1$<br>push 2$<br>push 3$<br>pall$<br>\~/monty$ ./monty bytecodes/00.m<br>3<br>2<br>1<br><br><br><br><br><br><br><br><br><br>|\~/monty$ cat bytecodes/07.m<br>push 1<br>push 2<br>push 3<br>pall<br>pop<br>pall<br>pop<br>pall<br>pop<br>pall<br>\~/monty$ ./monty bytecodes/07.m<br>3<br>2<br>1<br>2<br>1<br>1|\~/monty$ cat bytecodes/09.m<br>push 1<br>push 2<br>push 3<br>pall<br>swap<br>pall<br>\~/monty$ ./monty bytecodes/09.m<br>3<br>2<br>1<br>2<br>3<br>1<br><br><br><br><br>|
 
 ## Authors
 
-* **Camilo Andrés Isaza** - *Initial work* - [PurpleBooth](https://github.com/andresmelek)
-* **Kevin Adrian Giraldo** - *Initial work* - [PurpleBooth](https://github.com/Doouh)
+* [Camilo Andrés Isaza](https://github.com/andresmelek)
+* [Kevin Adrian Giraldo](https://github.com/Doouh)
