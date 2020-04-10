@@ -29,7 +29,7 @@ In the [Examples](#examples) section you can see some usage examples
 ## Examples
 * Some examples of using monty and its console output.
 
-|Example #1             |Example #1             |Example #3             |
+|Example #1             |Example #2             |Example #3             |
 |-----------------------|-----------------------|-----------------------|
 |\~/monty$ cat -e bytecodes/00.m<br>push 1$<br>push 2$<br>push 3$<br>pall$<br>\~/monty$ ./monty bytecodes/00.m<br>3<br>2<br>1<br><br><br><br><br><br><br><br><br><br>|\~/monty$ cat bytecodes/07.m<br>push 1<br>push 2<br>push 3<br>pall<br>pop<br>pall<br>pop<br>pall<br>pop<br>pall<br>\~/monty$ ./monty bytecodes/07.m<br>3<br>2<br>1<br>2<br>1<br>1|\~/monty$ cat bytecodes/09.m<br>push 1<br>push 2<br>push 3<br>pall<br>swap<br>pall<br>\~/monty$ ./monty bytecodes/09.m<br>3<br>2<br>1<br>2<br>3<br>1<br><br><br><br><br>|
 
